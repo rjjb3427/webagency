@@ -1,0 +1,34 @@
+<section id="template_authors">
+	<% if @template_authors.length>0 %>
+	<% @template_authors.each_slice(15) do |template_author10| %>
+	<ul class="template_authors">
+		<% template_author10.each do |template_author| %>
+		<li>
+			<input type="checkbox" id="template_author_<%=template_author.id %>" name="template_author[]" value="<%=template_author.id %>" />
+			<label for="template_author_<%=template_author.id %>" ><%=template_author.name %></label>
+		</li>
+		<% end %>
+	</ul>
+	<% end %>
+	<% end %>
+	<div>
+		<input type="button" value="선택완료" />		
+	</div>	
+</section>
+<script type="text/javascript">
+	$('#f2 input').each(function(){
+		var val1=$(this).val();
+		$('#template_authors input').each(function(){
+			if(val1==$(this).val())
+			$(this).attr('checked','checked');
+		});
+	});
+
+	$('#template_authors input[type="button"]').click(function(){
+		$('#f2').empty();	
+		$("#template_authors input:checked").each(function(){
+			$('#f2').append('<li><input type="hidden" name="template_author_id[]" value="'+$(this).val()+'" />'+$(this).parent().find('label').text()+'</li>');
+		});
+		oinst.close();
+	});
+</script>

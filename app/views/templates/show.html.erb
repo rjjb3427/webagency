@@ -1,0 +1,16 @@
+<section id="template_show" class="sub_main">
+	<div class="section_top">
+		<h1><%=@controller_name %></h1>
+		<p class="path"><%=link_to_home %> &gt; <strong><%=@controller_name %></strong></p>
+	</div>
+
+
+	<div id="sl_content_bottom_menu">	
+	<% if user_signed_in? %>
+	<% if current_user.admin? %>	
+	<%= link_to '수정', edit_template_path(@template) %> |
+	<% end %>
+	<% end %>
+	<%= link_to '목록으로', templates_path %>
+	</div>
+</section>

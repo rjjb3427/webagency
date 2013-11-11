@@ -1,0 +1,30 @@
+<form id="templates_search_form" action="">
+	<fieldset>
+		<legend>템플릿 검색</legend>
+	<div class="field">
+		<label id="label_template_products">상품별</label>
+		<ul class="nav nav-pills">
+			<% @products.each do |product| %>
+			<li <% if(product.id.to_i==params[:product_id].to_i)%>class="active"<% end %>><%=link_to product.title,templates_path(:product_id=>product.id) %></li>
+			<% end %>
+		</ul>	
+	</div>
+	<div class="field">
+		<label id="label_template_categories">분류별</label>
+		<ul id="f1">
+			<li></li>
+		</ul>
+		<%=link_to '분류검색',template_categories_path,:rel=>'#overlay',:class=>'popup' %>
+	</div>
+	<div class="field">
+		<label id="label_template_authors">제작자</label>
+		<ul id="f2">
+			<li></li>
+		</ul>
+		<%=link_to '제작자검색',template_authors_path,:rel=>'#overlay',:class=>'popup' %>
+	</div>
+	<div class="field">
+		<input type="submit" value="검색"  class="btn btn-primary" />	
+	</div>
+	</fieldset>
+</form>

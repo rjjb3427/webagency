@@ -1,0 +1,29 @@
+<section id="notice_show" class="sub_main">
+	<%= render :partial => 'customer_center/top' %>
+	<div class="board_left">	
+	<% if notice %>
+	<div class="alert alert-success">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+		<%= notice %>
+	</div>
+	<% end %>		
+	<div class="slboard_content">
+		<div class="sl_content_header">
+			<h3><%= @notice.title %></h3>
+			<p>작성자 :<%= @notice.user.name %>&nbsp;&nbsp;&nbsp; 작성일 : <%= @notice.created_at %></p>
+		</div>
+		<div class="sl_content_main">
+			<div class="sl_content_text"><%= simple_format(@notice.notice_content.content) %></div>
+		</div>
+	</div>
+	<div id="sl_content_bottom_menu">
+		<%= link_to '목록으로',customer_center_notices_path %>
+		<% if user_signed_in? %>
+		<% if current_user.admin? %>
+		&nbsp; | &nbsp; <%= link_to '수정', edit_customer_center_notice_path(@notice) %> &nbsp; | &nbsp; <%= link_to '삭제', ['customer_center',@notice], method: :delete, data: { confirm: '정말로 삭제합니까?' } %>
+		<% end %>
+		<% end %>
+	</div>
+	</div>
+	<%= render :partial => 'layouts/ad' %>	
+</section>

@@ -1,0 +1,9 @@
+//= require board
+
+.recipe_main {float:left;width:100%;margin:0 0 20px;padding:0 0 15px;border-bottom:1px dotted #ccc}
+.recipe_main .image {float:left;margin:0 20px 0 0}
+.recipe_main .text {float:left;width:590px}
+
+.field {margin:0 0 30px}
+#recipe_description {width:98%;height:50px}
+#recipe_recipe_content_attributes_content {width:98%;height:600px}

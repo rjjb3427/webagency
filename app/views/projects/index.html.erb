@@ -1,0 +1,33 @@
+<section id="projects">
+	<% unless @projects.empty? %>	
+	<% @projects.each do |project| %>
+	<article class="media">
+		<%=link_to project_path(project),:target=>'_blank',:class=>"pull-left" do %>
+		<figure>
+			<%=image_tag project.photo.medium_thumb %>
+			<figcaption><%=project.title %></figcaption>
+		</figure>
+  		<% end %>
+    <div class="media-body">
+    <h4 class="media-heading"><%=link_to project.title,project %></h4>
+    <%=simple_format project.description %>
+		</div>
+	</article>
+	<% end %>
+	
+	<% else %>
+	<article>
+		<p>글이 없습니다.</p>
+	</article>
+	<% end %>
+	<div id="sl_bottom_menu">
+		<% if user_signed_in? %>
+		<% if current_user.admin? %>
+		<%= link_to 'New Project', new_project_path %>
+		<% end %>
+		<% end %>
+		<div class="flickr_pagination">
+			<%= paginate @projects %>
+		</div>
+	</div>
+</section>

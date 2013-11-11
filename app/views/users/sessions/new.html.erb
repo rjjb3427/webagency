@@ -1,0 +1,20 @@
+<section>
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class=>"form-horizontal") do |f| %>
+		<div class="control-group">
+			<%= f.label :email,:class=>"control-label" %>
+			<div class="controls">
+			<%= f.email_field :email,:required=>"required",:autofocus => true %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :password,:class=>"control-label" %>
+			<div class="controls">
+				<%= f.password_field :password,:required=>"required" %>
+			</div>			
+		</div>
+  	<div class="control-group">
+  		<%= f.submit "Sign in",:class=>"btn btn-primary" %>
+  	</div>
+  <% end %>
+</section>
+

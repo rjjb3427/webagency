@@ -1,0 +1,46 @@
+<section id="products">
+	<% unless @products.empty? %>
+	<% @products.each do |product| %>
+	<article class="product">
+		<div class="article_top">
+			<h2><%=product.title %></h2>
+			<p><span class="arial"><%=product.price %></span>만원</p>
+		</div>		
+		<dl class="dl-horizontal">		
+			<dt>페이지수</dt>
+			<dd>총<strong class="arial"><%=product.page %></strong>페이지이내</dd>
+			<dt>제작기간</dt>
+			<dd>15 일 완성</dd>
+			<dt>기본제공</dt>
+			<dt>호스팅</dt>
+			<dd><span class="arial">1</span>년 무료제공</dd>
+			<dt>도메인</dt>
+			<dd><span class="arial">1</span>년 무료제공</dd>
+			<dt>유지보수</dt>
+			<dd><span class="arial">2</span>개월 지원</dd>
+			<dt>로고제작</dt>
+			<dd>이미지 무료제공</dd>
+		</dl>
+		<%=link_to product_path(product) do %>
+		<figure>
+			<%=image_tag product.photo.medium_thumb %>
+		</figure>
+		<% end %>
+		<%=link_to '수정',edit_product_path(product) %>
+		<%=link_to '삭제',product_path(product), method: :delete, data: { confirm: '정말로 삭제합니까?' } %>	
+	</article>
+	<% end %>
+	<% else %>
+	<article class="product">상품이 입력되지 않았습니다.</article>
+	<% end %>
+	<div id="sl_bottom_menu">
+		<% if user_signed_in? %>
+		<% if current_user.admin? %>		
+		<%= link_to 'New Product', new_product_path %>
+		<% end %>
+		<% end %>		
+		<div class="flickr_pagination">
+			<%= paginate @products %>
+		</div>
+	</div>
+</section>

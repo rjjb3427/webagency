@@ -1,0 +1,65 @@
+<section id="faq_main">	
+	<%= render :partial => 'customer_center/top' %>
+	<div class="board_left">
+	<article>
+		<ol id="faqCategoryList">
+			<% if(@faq_categories.length>0) %>			
+			<% @faq_categories.each do |faq_category| %>			
+			<li <% if(@categoryId==faq_category.id) %>class="on"<% end %>>
+				<%= link_to truncate(faq_category.title,:length => 20),customer_center_faqs_path(:faq_category_id=>faq_category.id),{:class=>'title'} %>
+				<% if(@categoryId==faq_category.id) %>				
+				<% if user_signed_in? %>
+				<% if current_user.admin? %>
+				<div class="sl_faq_category_menu">
+					<%= link_to '수정', edit_customer_center_faq_category_path(faq_category) %><br />
+					<%= link_to '삭제', customer_center_faq_category_path(faq_category),:method=>'delete', data: { confirm: '정말로 삭제합니까?' } %>
+				</div>
+				<% end %>
+				<% end %>
+				<% end %>				
+			</li>
+			<% end %>
+  			<% else %>
+			<li>분류가 없습니다.</li>
+			<% end %>
+		</ol>		
+	</article>
+	<article>
+		<dl id="faqList">
+			<% unless @faqs.empty? %>			
+			<% @faqs.each do |faq| %>
+			<dt <% if @faq %><% if @faq.id==faq.id %>class="on"<% end %><% end %>>
+				<%= link_to truncate(faq.title,:length => 80), customer_center_faqs_path(:faq_category_id=>params[:faq_category_id],:id=>faq),{:class=>'title'} %>
+				<% if user_signed_in? %>
+				<% if current_user.admin? %>
+				<div class="sl_faq_menu">
+
+				</div>
+				<% end %>
+				<% end %>
+			</dt>
+			<% if(@faq)%>
+			<% if(faq.id==@faq.id) %>
+					<dd><%=simple_format(@faq.faq_content.content) %></dd>
+			<% end %>
+			<% end %>
+			
+			<% end %>	
+  			<% else %>	
+  			<dt>글이 없습니다.</dt>
+			<% end %>
+		</dl>
+	</article>
+	<div class="flickr_pagination">
+		<%= paginate @faqs %>
+  	</div>	
+	<div id="sl_bottom_menu">
+		<% if user_signed_in? %>
+		<% if current_user.admin? %>
+		<%= link_to 'FAQ 분류 생성',new_customer_center_faq_category_path %> &nbsp; | &nbsp; <%= link_to 'FAQ 생성',new_customer_center_faq_path(:faq_category_id=>@categoryId) %>
+		<% end %>
+		<% end %>
+	</div>
+	</div>
+	<%= render :partial => 'layouts/ad' %>		
+</section>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title><%=@controller_name ||=@title %></title>
+<meta charset="utf-8">
+<meta name="robots" content="<%=@meta_robot %>" />
+<meta name="application-name" content="<%=@meta_application_name %>" />
+<meta name="keywords" content="<%=@meta_keyword %>" />
+<meta name="description" content="<%=@meta_description %>" />
+<meta name="author" content="Sleeping-Lion" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/assets/favicon.ico" />
+<%= stylesheet_link_tag @style, :media => "all" %>
+<%= csrf_meta_tags %>
+</head>
+<body id="main_page">
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<div class="wrapper">
+<%= render :partial => 'layouts/header' %>
+<div id="mom">
+	<div id="main">
+		<section id="templates" class="sub_main">
+			<div class="page-header pull-left row-fluid">
+				<h1 class="pull-left"><%=@controller_name %></h1>
+				<ul class="breadcrumb pull-right">
+					<li><%=link_to_home %> <span class="divider">/</span></li>
+					<li class="active"><%=@controller_name %></li>
+				</ul>
+			</div>		
+			<%= yield %>
+		</section>	
+	</div>
+</div>
+<%= render :partial => 'layouts/footer' %>
+</div>
+<div class="slboard_overlay" id="overlay"></div>
+<div id="template_preview">
+	<h1>Template : <span></span></h1>
+	<img id="loading" src="/assets/main-ajax-loader.gif" alt="loading" />
+	<p id="container"></p>
+</div>
+<%= javascript_include_tag @script %>
+</body>
+</html>
