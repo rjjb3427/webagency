@@ -13,9 +13,6 @@ class ApplicationController < ActionController::Base
     @meta_description=t(:meta_description)
     @meta_keyword=t(:meta_keyword)
     
-    @footer_address=t(:footer_address)
-    @footer_description=t(:footer_description)
-    
     @style='application'
     @script='index'
   end
