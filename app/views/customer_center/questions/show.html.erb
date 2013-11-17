@@ -19,27 +19,27 @@
 	<div id="sl_answer_list_layer">
 		<%= render @question_answer %>	
 	</div>
-	<% if(@question_answer.length>0) %>
+	<% unless @question_answer.empty? %>
 	<div class="flickr_pagination"><%= paginate @question_answer %></div>
 	<% end %>
 	<div id="sl_comment_form_layer">
 		<%= render "customer_center/question_answers/form" %>
 	</div>
 	<div id="sl_content_bottom_menu">
-		<%= link_to '목록으로', customer_center_questions_path %> 
+		<%= link_to t(:link_list), customer_center_questions_path %> 
 		<% if @question.user %>
 			<% if current_user %>
 				<% if @question.user_id==current_user.id %>
-					 &nbsp; | &nbsp; <%=link_to '수정', edit_customer_center_question_path(@question) %> &nbsp; | &nbsp;	
-					<%= link_to '삭제', ['customer_center',@question], method: :delete, data: { confirm: '정말로 삭제합니까?' } %>
+					 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_customer_center_question_path(@question) %> &nbsp; | &nbsp;	
+					<%= link_to t(:link_delete), ['customer_center',@question], method: :delete, data: { confirm: t(:delete_confirm) } %>
 				<% end %>
 			<% end %>
 		<% else %>
-			 &nbsp; | &nbsp; <%=link_to '수정', edit_customer_center_question_path(@question) %> &nbsp; | &nbsp;
+			 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_customer_center_question_path(@question) %> &nbsp; | &nbsp;
 			<% if checkPriv(@question) %>
-			<%= link_to '삭제', ['customer_center',@question], method: :delete, data: { confirm: '정말로 삭제합니까?' } %>			
+			<%= link_to t(:link_delete), ['customer_center',@question], method: :delete, data: { confirm: t(:delete_confirm) } %>			
 			<% else %>
-			<%= link_to '삭제', ['customer_center',@question], method: :delete %>
+			<%= link_to t(:link_delete), ['customer_center',@question], method: :delete %>
 			<% end %>			
 		<% end %>
 	</div>

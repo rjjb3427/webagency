@@ -1,5 +1,5 @@
 <section id="template_authors">
-	<% if @template_authors.length>0 %>
+	<% unless @template_authors.empty? %>
 	<% @template_authors.each_slice(15) do |template_author10| %>
 	<ul class="template_authors">
 		<% template_author10.each do |template_author| %>

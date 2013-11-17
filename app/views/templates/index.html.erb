@@ -44,7 +44,7 @@
 		</section>
 		<% end %>
 		<% else %>
-		<p class="nonData">해당 상품이 없습니다.</p>	
+		<p class="nonData"><%=t(:no_data)%></p>	
 		<% end %>
 	</section>
 	<div id="sl_bottom_menu">	
@@ -52,8 +52,6 @@
 		<% if current_user.admin? %>
 		<%= link_to 'New Template', new_template_path %>
 		<% end %>
-		<% end %>	
-		<div class="pagination pagination-centered">
-			<%= paginate @templates %>
-		</div>
+		<% end %>
+		<%= paginate @templates %>
 	</div>

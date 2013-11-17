@@ -1,4 +1,4 @@
-<section id="projects">
+<section id="sl_project_index">
 	<% unless @projects.empty? %>	
 	<% @projects.each do |project| %>
 	<article class="media">
@@ -17,7 +17,7 @@
 	
 	<% else %>
 	<article>
-		<p>글이 없습니다.</p>
+		<p><%=t(:no_data) %></p>
 	</article>
 	<% end %>
 	<div id="sl_bottom_menu">
@@ -26,8 +26,6 @@
 		<%= link_to 'New Project', new_project_path %>
 		<% end %>
 		<% end %>
-		<div class="flickr_pagination">
-			<%= paginate @projects %>
-		</div>
+		<%= paginate @projects %>
 	</div>
 </section>

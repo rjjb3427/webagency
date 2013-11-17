@@ -29,7 +29,7 @@
 		<div id="shit_move"><span id="shit_move_left">&nbsp;</span><span id="shit_move_center">&nbsp;</span><span id="shit_move_right">&nbsp;</span></div>
 	</div>
 	<div class="scrollable">
-		<% if @templateSliders.length>0 %>
+		<% unless @templateSliders.empty? %>
 		<ul class="items">
 			<% @templateSliders.each_slice(5) do |template5| %>	
 			<li>

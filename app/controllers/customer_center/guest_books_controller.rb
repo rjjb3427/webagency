@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class CustomerCenter::GuestBooksController < AnonBoardController
-  impressionist :actions=>[:show]  
   
   def initialize(*params)
     super(*params)

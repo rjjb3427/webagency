@@ -2,7 +2,6 @@
 
 class CustomerCenter::NoticesController < BoardController
   before_filter :authenticate_user!, :except => [:index,:show]
-  impressionist :actions=>[:show]
 
   def initialize
     super

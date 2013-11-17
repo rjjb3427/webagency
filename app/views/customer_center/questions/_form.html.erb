@@ -11,33 +11,33 @@
 	<% end %>
 	<% unless user_signed_in? %>
 	<div class="control-group">
-		<%= f.label :name,'이름' %>
+		<%= f.label :name %>
 		<div class="controls">
 			<%= f.text_field :name,{:class=>'sl_input',:required=>'required'} %>
 		</div>
 	</div>
 	<div class="control-group">
-		<%= f.label :passsword,'비밀번호' %>
+		<%= f.label :passsword %>
 		<div class="controls">
 			<%= f.password_field :password,{:class=>'sl_input',:required=>'required'} %>
 		</div>
 	</div>
 	<% end %>
 	<div class="control-group">
-		<%= f.label :secret,'비밀글' %>
+		<%= f.label :secret %>
 		<div class="controls">		
 			<%= f.check_box :secret,{:class=>'sl_input'} %>
 		</div>
 	</div>		
 	<div class="control-group">
-		<%= f.label :title,'제목 ' %>
+		<%= f.label :title %>
 		<div class="controls">
 			<%= f.text_field :title,{'class'=>'sl_input','required'=>'required'} %>
 		</div>
 	</div>
 	<%= f.fields_for :question_content do |c| %>
 	<div class="control-group">
-		<%= c.label :content,'내용' %>
+		<%= c.label :content %>
 		<div class="controls">		
 			<%= c.text_area :content,{'id'=>'sl_content','class'=>'sl_input','required'=>'required'}  %>
 		</div>

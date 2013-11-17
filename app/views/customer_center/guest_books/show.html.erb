@@ -1,4 +1,4 @@
-<section id="guest_book_show" class="sub_main">
+<section id="guest_book_show">
 	<%= render :partial => 'customer_center/top' %>
 	<% if notice %>
 	<div class="alert alert-success">
@@ -23,17 +23,17 @@
 		<%= render "customer_center/guest_book_comments/form" %>
 	</div>
 	<div id="sl_content_bottom_menu">
-		<%= link_to '목록으로', customer_center_guest_books_path %>
+		<%= link_to t(:link_list), customer_center_guest_books_path %>
 		<% if @guest_book.user %>
 			<% if current_user %>
 				<% if @guest_book.user_id==current_user.id %>
-					 &nbsp; | &nbsp; <%=link_to '수정', edit_customer_center_guest_book_path(@guest_book) %> &nbsp; | &nbsp;	
+					 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_customer_center_guest_book_path(@guest_book) %> &nbsp; | &nbsp;	
 					<%= link_to '삭제', ['customer_center',@guest_book], method: :delete, data: { confirm: '정말로 삭제합니까?' } %>
 				<% end %>
 			<% end %>
 		<% else %>
-			 &nbsp; | &nbsp; <%=link_to '수정', edit_customer_center_guest_book_path(@guest_book) %> &nbsp; | &nbsp;
-			<%= link_to '삭제', ['customer_center',@guest_book], method: :delete %>	
+			 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_customer_center_guest_book_path(@guest_book) %> &nbsp; | &nbsp;
+			<%= link_to t(:link_delete), ['customer_center',@guest_book], method: :delete %>	
 		<% end %>
 	</div>
 </section>

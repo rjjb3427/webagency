@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class CustomerCenter::QuestionsController < AnonBoardController
-  impressionist :actions=>[:show]
   before_filter :check_secret, :only => [:show]
   
   def initialize(*params)

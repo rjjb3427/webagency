@@ -28,13 +28,13 @@
 			<tr>
 				<td><p class="sl_name"><%= notice.user.name %></p></td>
 				<td><p><%= link_to notice.title, ['customer_center',notice]  %></p></td>
-				<td class="sl_right"><p class="sl_count"><%= notice.impressionist_count(:filter=>:ip_address) %></p></td>
-				<td class="sl_right"><p class="sl_registered_date"><%=getFormatDate(notice.created_at.to_s) %></p></td>
+				<td class="sl_right"><p class="sl_count"></p></td>
+				<td class="sl_right"><p class="sl_registered_date"><%=notice.created_at.to_date %></p></td>
 			</tr>
 			<% end %>			
 			<% else %>
 			<tr>
-				<td colspan="4"><p>글이 없습니다.</p></td>
+				<td colspan="4"><p><%=t(:no_data) %></p></td>
 			</tr>
 			<% end %>
 		</tbody>
@@ -42,12 +42,10 @@
 	<div id="sl_bottom_menu">
 	<% if user_signed_in? %>
 	<% if current_user.admin? %>			
-		<%= link_to '글쓰기', new_customer_center_notice_path %>
+		<%= link_to t(:link_new), new_customer_center_notice_path %>
 	<% end %>
 	<% end %>
-		<div class="pagination pagination-centered">
-			<%= paginate @notices %>
-  		</div>
+	<%= paginate @notices %>
 	</div>
 	</div>
 	<%= render :partial => 'layouts/ad' %>	

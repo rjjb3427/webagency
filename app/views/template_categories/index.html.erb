@@ -1,5 +1,5 @@
 <section id="template_categories">
-	<% if @template_categories.length>0 %>
+	<% unless @template_categories.empty? %>
 	<% @template_categories.each_slice(10) do |template_category10| %>
 	<ul class="template_categories">
 		<% template_category10.each do |template_category| %>

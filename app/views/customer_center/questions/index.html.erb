@@ -31,16 +31,14 @@
 			<% end %>			
 			<% else %>
 			<tr>
-				<td colspan="5"><p>글이 없습니다.</p></td>
+				<td colspan="5"><p><%=t(:no_data) %></p></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
 	<div id="sl_bottom_menu">
-		<%= link_to '글쓰기', new_customer_center_question_path %>
-		<div class="pagination pagination-centered">
-			<%= paginate @questions %>
-		</div>
+		<%= link_to t(:link_new), new_customer_center_question_path %>
+		<%= paginate @questions %>
 	</div>
 	</div>
 	<%= render :partial => 'layouts/ad' %>		

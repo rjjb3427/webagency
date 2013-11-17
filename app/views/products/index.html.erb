@@ -26,8 +26,8 @@
 			<%=image_tag product.photo.medium_thumb %>
 		</figure>
 		<% end %>
-		<%=link_to '수정',edit_product_path(product) %>
-		<%=link_to '삭제',product_path(product), method: :delete, data: { confirm: '정말로 삭제합니까?' } %>	
+		<%=link_to t(:link_edit),edit_product_path(product) %>
+		<%=link_to t(:link_delete),product_path(product), method: :delete, data: { confirm: t(:delete_confirm)} %>	
 	</article>
 	<% end %>
 	<% else %>
@@ -38,9 +38,7 @@
 		<% if current_user.admin? %>		
 		<%= link_to 'New Product', new_product_path %>
 		<% end %>
-		<% end %>		
-		<div class="flickr_pagination">
-			<%= paginate @products %>
-		</div>
+		<% end %>
+		<%= paginate @products %>
 	</div>
 </section>

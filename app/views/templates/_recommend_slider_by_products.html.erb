@@ -1,7 +1,7 @@
 <section class="template_recommend_slider_by_products">
 	<div class="template_recommend_product_list">
 		<ul>
-			<% if(@products.length>0) %>
+			<% unless @products.empty? %>
 			<% @products.each do |product| %>
 			<li><%=link_to product.title,templates_path(:product_id=>product) %></li>
 			<% end %>
@@ -10,7 +10,7 @@
 		</ul>
 	</div>
 	<div class="scrollable">
-		<% if @templateSliders.length>0 %>
+		<% unless @templateSliders.empty? %>
 		<ul class="items">
 			<% @templateSliders.each_slice(5) do |template5| %>	
 			<li>

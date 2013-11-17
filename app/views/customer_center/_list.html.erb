@@ -2,12 +2,12 @@
 	<article>
 		<h3>견적문의 현황</h3>
 		<ul>
-			<% if(@questions.length>0) %>
+			<% unless @questions.empty? %>
 			<% @questions.each do |question| %>
 			<li><%=link_to question.title.truncate(10),customer_center_question_path(question) %><span><%=getFormatDate(question.created_at.to_s) %></span><li>
 			<% end %>
 			<% else %>
-			<li>견적문의가 없습니다.</li>
+			<li><%=t(:no_data) %></li>
 			<% end %>
 		</ul>
 		<%=link_to 'more',customer_center_questions_path,:class=>'more' %>				
@@ -15,12 +15,12 @@
 	<article>
 		<h3>공지사항</h3>		
 		<ul>
-			<% if(@notices.length>0) %>
+			<% unless @notices.empty? %>
 			<% @notices.each do |notice| %>
 			<li><%=link_to notice.title.truncate(10),customer_center_notice_path(notice) %><span><%=getFormatDate(notice.created_at.to_s) %></span><li>
 			<% end %>
 			<% else %>
-			<li>견적문의가 없습니다.</li>
+			<li><%=t(:no_data) %></li>
 			<% end %>			
 		</ul>
 		<%=link_to 'more',customer_center_notices_path,:class=>'more' %>			
@@ -28,12 +28,12 @@
 	<article>
 		<h3>상담</h3>		
 		<ul>
-			<% if(@guest_books.length>0) %>
+			<% unless @guest_books.empty? %>
 			<% @guest_books.each do |guest_book| %>
 			<li><%=link_to guest_book.title.truncate(10),customer_center_guest_book_path(guest_book) %><span><%=getFormatDate(guest_book.created_at.to_s) %></span><li>
 			<% end %>
 			<% else %>
-			<li>견적문의가 없습니다.</li>
+			<li><%=t(:no_data) %></li>
 			<% end %>			
 		</ul>
 		<%=link_to 'more',customer_center_notices_path,:class=>'more' %>		
@@ -41,7 +41,7 @@
 	<article>
 		<h3>진행중인 프로젝트</h3>
 		<ul>
-			<% if(@projects.length>0) %>
+			<% unless @projects.empty? %>
 			<% @projects.each do |project| %>
 			<li><a href="/project/index.php" title="{.title}" {?.secret}{?_SESSION['maintain']}{?!in_array(.id,_SESSION['maintain'])}rel="#overlay"{/}{:}rel="#overlay"{/}{/}><span class="name"><!--{=truncate(.title,14)}--></span></a><span class="new_icon"><span>new</span></span>
     		<div class="progress progress-striped active">
@@ -49,7 +49,7 @@
     		</div>
 			<% end %>
 			<% else %>
-			<li>견적문의가 없습니다.</li>
+			<li><%=t(:no_data) %></li>
 			<% end %>
 		</ul>
 		<%=link_to 'more',customer_center_questions_path,:class=>'more' %>					

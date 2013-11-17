@@ -3,7 +3,7 @@
 		<div>
 			<h2>상품목록</h2>
 		</div>
-		<% if(@maintain.length>0) %>
+		<% unless @maintain.empty? %>
 		<% @maintain.each do |maintain| %>
 		<article class="maintain">
 			<%=link_to maintain do %>
@@ -22,8 +22,6 @@
 		<%= link_to 'New Maintain', new_maintain_path %>
 		<% end %>
 		<% end %>
-		<div class="flickr_pagination">
-			<%= paginate @maintain %>
-		</div>
+		<%= paginate @maintain %>
 	</div>
 </section>

@@ -12,11 +12,9 @@
 	<div id="sl_bottom_menu">
 		<% if user_signed_in? %>
 		<% if current_user.admin? %>
-		<%= link_to 'New Portfolio', new_portfolio_path %>	
+		<%= link_to t(:link_new), new_portfolio_path %>	
 		<% end %>
 		<% end %>
-		<div class="flickr_pagination">
-			<%= paginate @portfolios %>
-		</div>
+		<%= paginate @portfolios %>
 	</div>
 </section>

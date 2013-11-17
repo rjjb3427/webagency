@@ -1,6 +1,5 @@
-<h1>Editing template</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @template %> |
-<%= link_to 'Back', templates_path %>
+<section id="sl_template_edit">
+	<%= render 'form' %>
+	<%= link_to t(:link_show), @template %> |
+	<%= link_to t(:link_list), templates_path %>
+</section>

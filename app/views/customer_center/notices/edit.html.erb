@@ -1,6 +1,6 @@
-<section id="notice_edit" class="sub_main">
+<section id="sl_notice_edit">
 	<%= render :partial => 'customer_center/top' %>	
 	<%= render 'form' %>
-	<%= link_to '상세보기', ['customer_center',@notice] %> |
-	<%= link_to '목록으로', customer_center_notices_path %>
+	<%= link_to t(:link_show), ['customer_center',@notice] %> |
+	<%= link_to t(:link_list), customer_center_notices_path %>
 </section>

@@ -1,6 +1,5 @@
-<h1>Editing portfolio</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @portfolio %> |
-<%= link_to 'Back', portfolios_path %>
+<section id="sl_portfolio_edit">
+	<%= render 'form' %>
+	<%= link_to t(:link_show), @portfolio %> |
+	<%= link_to t(:link_list), portfolios_path %>
+</section>

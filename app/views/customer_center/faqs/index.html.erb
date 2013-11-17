@@ -3,7 +3,7 @@
 	<div class="board_left">
 	<article>
 		<ol id="faqCategoryList">
-			<% if(@faq_categories.length>0) %>			
+			<% unless @faq_categories.empty? %>			
 			<% @faq_categories.each do |faq_category| %>			
 			<li <% if(@categoryId==faq_category.id) %>class="on"<% end %>>
 				<%= link_to truncate(faq_category.title,:length => 20),customer_center_faqs_path(:faq_category_id=>faq_category.id),{:class=>'title'} %>
@@ -20,7 +20,7 @@
 			</li>
 			<% end %>
   			<% else %>
-			<li>분류가 없습니다.</li>
+			<li><%=t(:no_data) %></li>
 			<% end %>
 		</ol>		
 	</article>
@@ -46,13 +46,11 @@
 			
 			<% end %>	
   			<% else %>	
-  			<dt>글이 없습니다.</dt>
+  			<dt><%=t(:no_data)%></dt>
 			<% end %>
 		</dl>
 	</article>
-	<div class="flickr_pagination">
-		<%= paginate @faqs %>
-  	</div>	
+	<%= paginate @faqs %>
 	<div id="sl_bottom_menu">
 		<% if user_signed_in? %>
 		<% if current_user.admin? %>

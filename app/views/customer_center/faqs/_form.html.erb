@@ -10,16 +10,16 @@
     </div>    
   <% end %>
   <div class="field">
-    <%= f.label :faq_category_id,'분류' %><br />
+    <%= f.label :faq_category_id %><br />
     <%= f.select :faq_category_id, options_from_collection_for_select(@faq_categories, 'id', 'title',@faq_category_id) %>
   </div>
   <div class="field">
-    <%= f.label :title,'제목' %><br />
+    <%= f.label :title %><br />
     <%= f.text_field :title,:class=>'sl_input',:required=>'required' %>
   </div>
 	<%= f.fields_for :faq_content do |c| %>
   <div class="field">
-    <%= c.label :content,'내용'  %><br />
+    <%= c.label :content  %><br />
     <%= c.text_area :content,:class=>'sl_input',:required=>'required' %>
   </div>
 	<% end %>  
