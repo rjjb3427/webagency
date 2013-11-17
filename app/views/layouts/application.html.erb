@@ -13,28 +13,34 @@
 <%= stylesheet_link_tag @style, :media => "all" %>
 <%= csrf_meta_tags %>
 </head>
-<body id="main_page">
+<body>
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<div class="wrapper">
 <%= render :partial => 'layouts/header' %>
+<div class="wrapper">
 <div id="mom">
 	<div id="main">
-		<section id="templates" class="sub_main">
-			<div class="page-header pull-left row-fluid">
-				<h1 class="pull-left"><%=@controller_name %></h1>
-				<ul class="breadcrumb pull-right">
-					<li><%=link_to_home %> <span class="divider">/</span></li>
-					<li class="active"><%=@controller_name %></li>
-				</ul>
-			</div>		
-			<%= yield %>
-		</section>	
+			<section class="sub_main">
+				<% unless current_page?(root_path) %>
+				<div class="page-header pull-left row-fluid">
+					<h1 class="pull-left"><%=@controller_name %></h1>
+					<ul class="breadcrumb pull-right">
+						<li><%=link_to_home %> <span class="divider">/</span></li>
+						<% if @page_category %>
+						<li><%=link_to @page_category %> <span class="divider">/</span></li>
+						<% end %>
+						<li class="active"><%=@controller_name %></li>
+					</ul>
+				</div>
+				<% end %>
+			<%=yield %>
+		<div class="clearfix">&nbsp;</div>
+		</section>
 	</div>
 </div>
-<%= render :partial => 'layouts/footer' %>
 </div>
+<%= render :partial => 'layouts/footer' %>
 <div class="slboard_overlay" id="overlay"></div>
 <div id="template_preview">
 	<h1>Template : <span></span></h1>
