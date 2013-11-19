@@ -3,6 +3,7 @@
 
 ko:
   application_name : 'SL 웹에이전시'
+  main_title : '최고의 홈페이지로 고객감동을 실현하는 SL'
   company_name : 'SL Web Factory'
   meta_description : 'SL 웹에이전시 홈페이지 입니다.'
   meta_keyword : '홈페이지,홈페이지제작,Homepage,싸이트,site,웹,Web,Html,Rails,퍼블리싱,publishing'
