@@ -35,8 +35,9 @@ gem 'bootstrap-sass'
 gem 'fog'
 gem 'unf'
 gem 'recaptcha'
-gem 'capistrano', '~> 2.15'
-gem 'protected_attributes'
+gem 'capistrano'
+gem 'thin'
+gem 'connect'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -44,8 +45,15 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'capistrano-rails', '~> 1.0.0'
   gem 'sqlite3'
 end
+
+
 group :production do
   gem 'mysql2'
+end
+
+group :assets do
+  gem 'asset_sync'
 end
