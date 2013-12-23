@@ -26,7 +26,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'devise'
+gem 'devise', '~> 3.0.0.rc'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
@@ -38,6 +38,7 @@ gem 'recaptcha'
 gem 'capistrano'
 gem 'thin'
 gem 'connect'
+gem 'impressionist'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -49,11 +50,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-
 group :production do
   gem 'mysql2'
-end
-
-group :assets do
   gem 'asset_sync'
 end
