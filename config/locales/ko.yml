@@ -7,6 +7,7 @@ ko:
   company_name : 'SL Web Factory'
   meta_description : 'SL 웹에이전시 홈페이지 입니다.'
   meta_keyword : '홈페이지,홈페이지제작,Homepage,싸이트,site,웹,Web,Html,Rails,퍼블리싱,publishing'
+  footer_phone_number : '010-4141-3726'
   footer_address : '경기도 수원시 권선구 세류3동'
   footer_description : '이 사이트를 무단으로 복제,전제하는 것은<br class="visible-sm" /> 법적인 처벌을 받지 않습니다.'
   home : '홈'
@@ -49,6 +50,7 @@ ko:
   label_password : '비밀번호'
   label_created_at : '등록일시'
   label_updated_at : '수정일시'
+  label_phone_number : '전화번호'
 
   action_index : '목록'
   action_show : '상세'
@@ -276,12 +278,18 @@ ko:
       <<: *errors
   activerecord:
     models:
-      intro : '수정이는?'
-      recipe : '수정이 요리'    
-      guest_book: '방명록'
+      intro : '소개'      
       gallery : '사진첩'
-      question : '질문,답변'
-      notice : '공지사항'
+      blog : '블로그'
+      question : '질문, 답변'
+      faq : 'FAQ'
+      contact : '상담, 문의'
+      notice : '공지사항'      
+      guest_book : '방명록'
+      history : '연혁'
+      portfolio : '포트폴리오'
+      user : '회원'
+      site : '사이트 소개'      
     attributes :
       recipe :
         recipe_category_id : '분류'

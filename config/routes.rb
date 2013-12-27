@@ -1,6 +1,9 @@
 Webagency::Application.routes.draw do
-  devise_for :users, :controllers => { :sessions => "users/sessions",:registrations => "users/registrations" }, :path_names =>  {:sign_up=>'new',:sign_in => 'login', :sign_out => 'logout'} do  
-    get 'login', :to => 'users::Sessions#new'
+  mount Ckeditor::Engine => '/ckeditor'
+
+  devise_for :users, :controllers => { :sessions => "users/sessions",:registrations => "users/registrations" }, :path_names =>  {:sign_up=>'new',:sign_in => 'login', :sign_out => 'logout'} do
+    get '/users', :to => 'users/registrations#index'
+    get '/login', :to => 'users/sessions#new'      
   end
 
   resources :products

@@ -1,13 +1,15 @@
 # encoding: utf-8
 
 class PortfoliosController < ApplicationController
-  def initialize
-    super
-    @style='portfolios'
-    @script='products/index'
-    @controller_name='포트폴리오'    
-  end  
+  before_action :authenticate_user!, :except => [:index,:show]  
+  before_action :set_portfolio, only: [:show, :edit, :update, :destroy]  
   
+  def initialize(*params)
+    super(*params)
+    @controller_name=t('activerecord.models.portfolio')
+    @script='portfolio/index'   
+  end
+   
   # GET /portfolios
   # GET /portfolios.json
   def index
@@ -22,8 +24,6 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
-    @portfolio = Portfolio.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @portfolio }
@@ -43,17 +43,16 @@ class PortfoliosController < ApplicationController
 
   # GET /portfolios/1/edit
   def edit
-    @portfolio = Portfolio.find(params[:id])
   end
 
   # POST /portfolios
   # POST /portfolios.json
   def create
-    @portfolio = Portfolio.new(params[:portfolio])
+    @portfolio = Portfolio.new(portfolio_params)
 
     respond_to do |format|
       if @portfolio.save
-        format.html { redirect_to @portfolio, notice: 'Portfolio was successfully created.' }
+        format.html { redirect_to @portfolio, notice: @controller_name +t(:message_success_create) }
         format.json { render json: @portfolio, status: :created, location: @portfolio }
       else
         format.html { render action: "new" }
@@ -65,11 +64,9 @@ class PortfoliosController < ApplicationController
   # PUT /portfolios/1
   # PUT /portfolios/1.json
   def update
-    @portfolio = Portfolio.find(params[:id])
-
     respond_to do |format|
-      if @portfolio.update_attributes(params[:portfolio])
-        format.html { redirect_to @portfolio, notice: 'Portfolio was successfully updated.' }
+      if @portfolio.update_attributes(portfolio_params)
+        format.html { redirect_to @portfolio, notice: @controller_name +t(:message_success_update) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,7 +78,6 @@ class PortfoliosController < ApplicationController
   # DELETE /portfolios/1
   # DELETE /portfolios/1.json
   def destroy
-    @portfolio = Portfolio.find(params[:id])
     @portfolio.destroy
 
     respond_to do |format|
@@ -89,4 +85,15 @@ class PortfoliosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_portfolio
+    @portfolio = Portfolio.find(params[:id])
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def portfolio_params
+    params.require(:portfolio).permit(:id, :url, :title, :description, :photo)
+  end  
 end
