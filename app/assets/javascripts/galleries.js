@@ -1,6 +1,6 @@
 //= require application
 //= require jquery_ujs
-//= require plugin/jquery.fancybox
+//= require fancybox
 //= require plugin/jquery.uri.js
 
 $(document).ready(function() {

@@ -39,6 +39,7 @@ gem 'capistrano'
 gem 'thin'
 gem 'connect'
 gem 'impressionist'
+gem 'fancybox2-rails', '~> 0.2.4'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
