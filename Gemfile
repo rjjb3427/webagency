@@ -6,7 +6,7 @@ ruby '1.9.3'
 gem 'rails', '4.0.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+#gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -31,7 +31,6 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ckeditor'
-gem 'bootstrap-sass'
 gem 'fog'
 gem 'unf'
 gem 'recaptcha'
