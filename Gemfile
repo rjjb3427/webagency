@@ -29,6 +29,7 @@ gem 'unf'
 gem 'impressionist'
 gem 'jquery-easing-rails'
 gem 'fancybox2-rails', :path=>"vendor/gems/fancybox2-rails"
+gem 'sitemap_generator'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
