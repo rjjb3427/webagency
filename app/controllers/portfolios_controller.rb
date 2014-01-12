@@ -7,13 +7,12 @@ class PortfoliosController < ApplicationController
   def initialize(*params)
     super(*params)
     @controller_name=t('activerecord.models.portfolio')
-    @script='portfolio/index'   
   end
    
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = Portfolio.order('id desc').page(params[:page]).per(10)
+    @portfolios = Portfolio.order('id desc').page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,6 +33,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/new.json
   def new
     @portfolio = Portfolio.new
+    @portfolio.build_portfolio_content    
 
     respond_to do |format|
       format.html # new.html.erb

@@ -31,14 +31,12 @@
 	</article>
 	<% end %>
 	<% else %>
-	<article class="product">상품이 입력되지 않았습니다.</article>
+	<article class="product"><%=t(:no_data)%></article>
 	<% end %>
-	<div id="sl_bottom_menu">
-		<% if user_signed_in? %>
-		<% if current_user.admin? %>		
-		<%= link_to 'New Product', new_product_path %>
-		<% end %>
-		<% end %>
-		<%= paginate @products %>
-	</div>
+  <div id="sl_bottom_menu">
+  <% if can? :create, Product %>
+    <%= link_to t(:link_new), new_product_path,:rel=>"nofollow" %>
+  <% end %>
+  <%= paginate @products %>
+  </div>
 </section>

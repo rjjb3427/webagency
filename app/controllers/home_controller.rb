@@ -8,6 +8,7 @@ class HomeController < ApplicationController
   end
 
   def index
+    @template_categories=TemplateCategory.find(:all,:conditions=>{:enable=>true})
     @templateSliders=Template.order('id desc').page(params[:page]).per(50)    
     @products=Product.all
     @projects=Project.order('id desc').page(params[:page]).per(10)

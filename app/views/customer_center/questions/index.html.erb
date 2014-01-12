@@ -1,7 +1,5 @@
-<section id="section_questions">
-	<%= render :partial => 'customer_center/top' %>
-	<div class="board_left">	
-	<table width="100%" cellpadding="0" cellspacing="0" class="slboard_list">
+<section id="section_questions" class="table-responsive">
+  <table width="100%" cellpadding="0" cellspacing="0" class="table slboard_list">
 		<colgroup>
 			<col width="100px" />
 			<col />
@@ -40,6 +38,4 @@
 		<%= link_to t(:link_new), new_customer_center_question_path %>
 		<%= paginate @questions %>
 	</div>
-	</div>
-	<%= render :partial => 'layouts/ad' %>		
 </section>

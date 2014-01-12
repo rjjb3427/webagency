@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130324093627) do
 
-  create_table "editor_photos", force: true do |t|
-    t.string   "photo",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "faq_categories", force: true do |t|
     t.string   "title",      null: false
     t.datetime "created_at"
@@ -147,12 +141,15 @@ ActiveRecord::Schema.define(version: 20130324093627) do
 
   add_index "notices", ["user_id"], name: "index_notices_on_user_id"
 
+  create_table "portfolio_contents", force: true do |t|
+    t.text "content", null: false
+  end
+
   create_table "portfolios", force: true do |t|
-    t.string   "title"
-    t.string   "company"
-    t.string   "description"
-    t.string   "photo"
-    t.string   "link"
+    t.string   "title",       null: false
+    t.string   "url",         null: false
+    t.text     "description", null: false
+    t.string   "photo",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -226,7 +223,7 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
 
   create_table "template_authors", force: true do |t|
-    t.string   "name",        limit: 60,                null: false
+    t.string   "name",                                  null: false
     t.string   "korean_name", limit: 60
     t.boolean  "enable",                 default: true, null: false
     t.datetime "created_at"
@@ -248,7 +245,7 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "template_packages", force: true do |t|
-    t.string   "name",        limit: 60,                null: false
+    t.string   "name",                                  null: false
     t.string   "korean_name", limit: 60
     t.boolean  "enable",                 default: true, null: false
     t.datetime "created_at"
@@ -268,7 +265,7 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   add_index "template_screenshots", ["template_id"], name: "index_template_screenshots_on_template_id"
 
   create_table "template_softwares", force: true do |t|
-    t.string   "name",        limit: 60,                null: false
+    t.string   "name",                                  null: false
     t.string   "korean_name", limit: 60
     t.boolean  "enable",                 default: true, null: false
     t.datetime "created_at"
@@ -281,7 +278,7 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "template_sources", force: true do |t|
-    t.string   "name",        limit: 60,                null: false
+    t.string   "name",                                  null: false
     t.string   "korean_name", limit: 60
     t.boolean  "enable",                 default: true, null: false
     t.datetime "created_at"

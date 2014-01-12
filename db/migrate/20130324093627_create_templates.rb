@@ -20,7 +20,7 @@ class CreateTemplates < ActiveRecord::Migration
       t.string :keywords
       t.string :main_screenshot
       t.string :small_screenshot
-      t.boolean :enable, :default=>1             
+      t.boolean :enable, :null=>false, :default=>true
       t.timestamps
     end
     

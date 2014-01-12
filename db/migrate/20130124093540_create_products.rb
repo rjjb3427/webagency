@@ -11,7 +11,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :make_day, :null=>false, :default=>7
       t.boolean :full, :null=>false, :default=>0
       t.boolean :main_show, :null=>false, :default=>0
-      t.boolean :enable, :null=>false, :default=>1  
+      t.boolean :enable, :null=>false, :default=>true
       t.timestamps
     end
     

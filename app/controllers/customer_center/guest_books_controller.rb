@@ -1,16 +1,19 @@
 # encoding: utf-8
 
 class CustomerCenter::GuestBooksController < AnonBoardController
-  
+  before_action :set_guest_book, only: [:show, :edit, :update, :destroy]
+
   def initialize(*params)
-    super(*params)
-    @controller_name='상담'
+    super(*params)   
+    @controller_name=t('activerecord.models.guest_book')
+    @script="board/index"
+    @meta_description='예쁘고 귀여운 수정이의 방명록입니다.'
   end
   
   # GET /guest_books
   # GET /guest_books.json
   def index
-    @guest_books = GuestBook.order('id desc').page(params[:page]).per(10)
+    @guest_books = GuestBook.order('id desc').page(params[:page]).per(15)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -21,8 +24,11 @@ class CustomerCenter::GuestBooksController < AnonBoardController
   # GET /guest_books/1
   # GET /guest_books/1.json
   def show
-    @guest_book = GuestBook.find(params[:id])
     @guest_book_comments=@guest_book.guest_book_comment.order('id desc').page(params[:page]).per(10)
+    @guest_book_comment=GuestBookComment.new
+    
+    @title=@guest_book.title+t(:title_separator)+t(:application_name)
+    @script="board/show"     
     
     respond_to do |format|
       format.html # show.html.erb
@@ -44,21 +50,30 @@ class CustomerCenter::GuestBooksController < AnonBoardController
   
   # GET /guest_books/1/edit
   def edit
-    @guest_book = GuestBook.find(params[:id])
   end
   
   # POST /guest_books
   # POST /guest_books.json
   def create
-    @guest_book = GuestBook.new(params[:guest_book])
+    @guest_book = GuestBook.new(guest_book_params)
     
     if current_user
       @guest_book.user_id=current_user.id
     end
     
     respond_to do |format|
-      if @guest_book.save
-        format.html { redirect_to ['customer_center',@guest_book], :notice => '방명록이 작성되었습니다.' }
+      if Rails.env.production? 
+        if current_user
+          result=@guest_book.save
+        else
+          result=verify_recaptcha(:model => @guest_book, :message => "Oh! It's error with reCAPTCHA!") && @guest_book.save
+        end
+      else
+        result=@guest_book.save
+      end
+      
+      if result
+        format.html { redirect_to customer_center_guest_book_url(@guest_book), :notice=> @controller_name +t(:message_success_create)}
         format.json { render :json => @guest_book, :status => :created, :location => @guest_book }
       else
         format.html { render :action => "new" }
@@ -70,11 +85,9 @@ class CustomerCenter::GuestBooksController < AnonBoardController
   # PUT /guest_books/1
   # PUT /guest_books/1.json
   def update
-    @guest_book = GuestBook.find(params[:id])
-    
     respond_to do |format|
-      if @guest_book.update_attributes(params[:guest_book])
-        format.html { redirect_to ['customer_center',@guest_book], :notice => '방명록이 수정되었습니다.' }
+      if @guest_book.update_attributes(guest_book_params)
+        format.html { redirect_to @guest_book, :notice=> @controller_name +t(:message_success_update)}
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -86,12 +99,28 @@ class CustomerCenter::GuestBooksController < AnonBoardController
   # DELETE /guest_books/1
   # DELETE /guest_books/1.json
   def destroy
-    @guest_book = GuestBook.find(params[:id])
     @guest_book.destroy
     
     respond_to do |format|
       format.html { redirect_to customer_center_guest_books_url }
       format.json { head :ok }
     end
+  end
+  
+  protected
+  
+  def get_gg 
+    return set_guest_book
+  end
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_guest_book
+    @guest_book = GuestBook.find(params[:id])
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def guest_book_params
+    params.require(:guest_book).permit(:id,:name,:password,:title,guest_book_content_attributes: [:id,:content],guest_book_comment_attributes: [:id,:content])
   end
 end

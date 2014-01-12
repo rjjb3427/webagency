@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title><%=@controller_name ||=@title %></title>
+<title><%=@title %></title>
 <meta charset="utf-8">
 <meta name="robots" content="<%=@meta_robot %>" />
 <meta name="application-name" content="<%=@meta_application_name %>" />
@@ -9,7 +9,6 @@
 <meta name="description" content="<%=@meta_description %>" />
 <meta name="author" content="Sleeping-Lion" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <link rel="shortcut icon" href="<%=asset_path('favicon.ico') %>" />
 <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css", :media => "all" %>
 <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -17,36 +16,33 @@
 </head>
 <body>
 <!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <%= render :partial => 'layouts/header' %>
 <section id="mom">
-	<section id="main" class="container">
-		<% unless current_page?(root_path) %>
-		<div class="page-header row">
-			<h1 class="pull-left"><%=@controller_name %></h1>
-			<ul class="breadcrumb pull-right">
-				<li><%=link_to_home %> <span class="divider">/</span></li>
-				<% if @page_category %>
-				<li><%=link_to @page_category %> <span class="divider">/</span></li>
-				<% end %>
-				<li class="active"><%=@controller_name %></li>
-			</ul>
-		</div>
-		<% end %>	
-		<section class="sub_main">
-			<%=yield %>
-			<div class="clearfix">&nbsp;</div>
-		</section>
-	</section>
+  <section id="main" class="container">
+      <% unless current_page?(root_path) %>
+      <div class="page-header">
+        <h1><%=@controller_name %></h1>
+        <ul class="breadcrumb">
+          <li><%=link_to t(:home),root_path %></li>
+          <% if @page_category %>
+          <li><%=link_to @page_category %></li>
+          <% end %>
+          <li class="active"><%=@controller_name %></li>
+        </ul>
+      </div>
+      <% else %>
+      <hr class="none">
+      <% end %>               
+    <section class="sub_main">   
+      <%=yield %>      
+    </section>
+  </section>
 </section>
 <%= render :partial => 'layouts/footer' %>
 <div class="slboard_overlay" id="overlay"></div>
-<div id="template_preview">
-	<h1>Template : <span></span></h1>
-	<img id="loading" src="/assets/main-ajax-loader.gif" alt="loading" />
-	<p id="container"></p>
-</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 <%= javascript_include_tag "//cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" %>
 <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" %>
 <%= javascript_include_tag @script, "data-turbolinks-track" => true %>

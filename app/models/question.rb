@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Question < ActiveRecord::Base
+  is_impressionable  
   include AnonBoard
   validates_presence_of :title
   has_one :question_content, :foreign_key => :id, :dependent => :destroy

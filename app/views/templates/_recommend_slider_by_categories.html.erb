@@ -1,21 +1,21 @@
 <section class="template_recommend_slider_by_categories">
-	<div class="template_recommend_category_list">
-		<ul>
-			<% if(@products.length>0) %>
-			<% @products.each do |product| %>
-			<li><%=link_to product.title,templates_path(:product_id=>product) %></li>
-			<% end %>
-			<% else %>
-			<% end %>
-		</ul>
-	</div>
-	<div class="scrollable">
-		<% if @templateSliders.length>0 %>
-		<ul class="items">
-			<% @templateSliders.each_slice(5) do |template5| %>	
-			<li>
-			<% template5.each_with_index do |template,index| %>
-	<article class="template list2<% if(index==4) %> nm<% end %>">
+  <div class="template_recommend_category_list">
+    <ul>
+      <% unless @template_categories.empty? %>
+      <% @template_categories.each do |template_category| %>
+      <li><%=link_to template_category.name,templates_path(:template_category_id=>template_category) %></li>
+      <% end %>
+      <% else %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="scrollable">
+    <% unless @templateSliders.empty? %>
+    <ul class="items">
+      <% @templateSliders.each_slice(6) do |template5| %>	
+      <li>
+        <% template5.each_with_index do |template,index| %>
+	<article class="template<% if(index==5) %> nm<% end %>">
 		<div class="template_img">
 			<input type="hidden" value="<%=template.main_screenshot %>" />
 			<%=link_to template_path(:id=>template,:product=>template.template_type.product_id),:html=>{:target=>'_blank',:class=>'detail_link'} do %>

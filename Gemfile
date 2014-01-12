@@ -51,8 +51,7 @@ end
 
 group :production do
   gem 'mysql2'
-  gem 'recaptcha'  
-  gem 'asset_sync'
+  gem 'recaptcha'
   gem 'thin'
   gem 'connect'
 end

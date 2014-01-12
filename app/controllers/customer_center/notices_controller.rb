@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 class CustomerCenter::NoticesController < BoardController
-  before_filter :authenticate_user!, :except => [:index,:show]
+  before_action :set_notice, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index,:show]
 
   def initialize
     super
@@ -25,8 +26,6 @@ class CustomerCenter::NoticesController < BoardController
   # GET /notices/1
   # GET /notices/1.json
   def show
-    @notice = Notice.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @notice }
@@ -47,13 +46,12 @@ class CustomerCenter::NoticesController < BoardController
 
   # GET /notices/1/edit
   def edit
-    @notice = Notice.find(params[:id])
   end
 
   # POST /notices
   # POST /notices.json
   def create
-    @notice = Notice.new(params[:notice])
+    @notice = Notice.new(notice_params)
     @notice.user_id=current_user.id
 
     respond_to do |format|
@@ -70,10 +68,8 @@ class CustomerCenter::NoticesController < BoardController
   # PUT /notices/1
   # PUT /notices/1.json
   def update
-    @notice = Notice.find(params[:id])
-
     respond_to do |format|
-      if @notice.update_attributes(params[:notice])
+      if @notice.update_attributes(notice_params)
         format.html { redirect_to ['customer_center',@notice], notice: '공지사항이 수정되었습니다.' }
         format.json { head :no_content }
       else
@@ -86,7 +82,6 @@ class CustomerCenter::NoticesController < BoardController
   # DELETE /notices/1
   # DELETE /notices/1.json
   def destroy
-    @notice = Notice.find(params[:id])
     @notice.destroy
 
     respond_to do |format|
@@ -94,4 +89,15 @@ class CustomerCenter::NoticesController < BoardController
       format.json { head :no_content }
     end
   end
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_notice
+    @notice = Notice.find(params[:id])
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def notice_params
+    params.require(:notice).permit(:id,:title,notice_content_attributes: [:id,:content])
+  end  
 end

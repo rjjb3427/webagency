@@ -4,6 +4,7 @@ class CreateMaintains < ActiveRecord::Migration
     create_table :maintains do |t|
       t.string :title, :null=>false, :limit=>60
       t.string :photo
+      t.boolean :enable, :null=>false, :default=>true      
       t.timestamps
     end
     

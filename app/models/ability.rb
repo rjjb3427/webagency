@@ -6,7 +6,7 @@ class Ability
     if user.admin? # Admin user
       can :manage, :all
     else # Non-admin user
-      can :read, :all
+      can :manage, [Question,GuestBook]
     end
   end
 end

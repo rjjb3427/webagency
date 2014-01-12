@@ -18,20 +18,13 @@
 		</div>
 		<p class="package_name"></p>
 	</div>
-	<div class="products_search_link">
-		<ul>
-			<% @products.each do |product| %>
-			<li><%=link_to product.title,templates_path(:product_id=>product) %></li>
-			<% end %>
-		</ul>
-	</div>
 	<div class="scrollable">
 		<% if @templateSliders.length>0 %>
 		<ul class="items">
 			<% @templateSliders.each_slice(5) do |template5| %>	
 			<li>
 			<% template5.each_with_index do |template,index| %>
-				<article class="list2<% if(index+1==5) %> nm<% end %>">
+				<article class="template<% if(index+1==5) %> nm<% end %>">
 					<div class="template_img">
 						<input type="hidden" value="<%=template.main_screenshot %>" />
 						<%=link_to template_path(:id=>template,:product=>template.template_type.product_id),:target=>'_blank',:class=>'detail_link' do %>

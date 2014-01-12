@@ -11,9 +11,9 @@ class TemplatesController < ApplicationController
   # GET /templates
   # GET /templates.json
   def index
-    @products=Product.find(:all,:conditions=>{:enable=>1})
-    @template_categories=TemplateCategory.find(:all,:conditions=>{:enable=>1})
-    @template_authors=TemplateAuthor.find(:all,:conditions=>{:enable=>1})
+    @products=Product.find(:all,:conditions=>{:enable=>true})
+    @template_categories=TemplateCategory.find(:all,:conditions=>{:enable=>true})
+    @template_authors=TemplateAuthor.find(:all,:conditions=>{:enable=>true})
     
     @templates=Template.joins(:template_author)
     
