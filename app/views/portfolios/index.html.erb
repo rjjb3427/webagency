@@ -1,4 +1,5 @@
 <section id="sl_portfolio_index">
+  <% unless @portfolios.empty? %>  
   <% @portfolios.each do |portfolio| %>
   <article class="media">
     <%=link_to portfolio_path(portfolio),:class=>"pull-left" do %>
@@ -18,6 +19,9 @@
       <%= link_to t(:link_edit), edit_portfolio_path(portfolio) %> &nbsp; | &nbsp; <%= link_to t(:link_delete), portfolio, method: :delete, data: { confirm: t(:delete_confirm)} %>
     <% end %>
   </article>
+  <% end %>
+  <% else %>
+  <%=t(:no_data) %>
   <% end %>
   <div id="sl_bottom_menu">
   <% if can? :create, Portfolio %>

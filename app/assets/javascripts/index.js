@@ -5,10 +5,6 @@
 //=require mediaplayer-5.7-viral/jwplayer
 
 $(document).ready(function() {
-	$(".template_slider .scrollable").scrollable({circular: true }).autoscroll({interval: 3500});
-	
-
-		
 	//Default Action
 	$("#main_tab_container .tab_content:first").show(); //Show first tab content
 	

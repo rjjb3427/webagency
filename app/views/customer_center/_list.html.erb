@@ -1,5 +1,6 @@
-<section class="main_customer_center">
-	<article>
+<section class="main_list main_customer_center">
+  <section class="row">  
+	<article class="col-xs-6">
 		<h2>견적문의 현황</h2>
 		<ul>
 			<% unless @questions.empty? %>
@@ -12,7 +13,7 @@
 		</ul>
 		<%=link_to 'more',customer_center_questions_path,:class=>'more' %>				
 	</article>
-	<article>
+	<article class="col-xs-6">
 		<h2>공지사항</h2>	
 		<ul>
 			<% unless @notices.empty? %>
@@ -25,7 +26,9 @@
 		</ul>
 		<%=link_to 'more',customer_center_notices_path,:class=>'more' %>			
 	</article>
-	<article>
+	</section>
+	<section class="row">
+	<article class="col-xs-6">
 		<h2>상담</h2>
 		<ul>
 			<% unless @guest_books.empty? %>
@@ -38,7 +41,7 @@
 		</ul>
 		<%=link_to 'more',customer_center_notices_path,:class=>'more' %>		
 	</article>
-	<article>
+	<article class="col-xs-6">
 		<h2>진행중인 프로젝트</h2>
 		<ul>
 			<% unless @projects.empty? %>
@@ -54,4 +57,5 @@
 		</ul>
 		<%=link_to 'more',customer_center_questions_path,:class=>'more' %>					
 	</article>	
+	</section>
 </section>

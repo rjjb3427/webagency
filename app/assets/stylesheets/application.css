@@ -203,18 +203,18 @@ header #top_menu li {float:left;margin:0 15px 0 0;padding:0}
 #template_index {float:left;width:940px}  
   
   
-.template_recommend_slider_by_categories {float:left;width:100%}
+.template_recommend_slider_by_categories {}
 
 
 
-.main_customer_center {float:left;width:100%;margin:2em 0}
-.main_customer_center article {position:relative}
-.main_customer_center article h3 {border-bottom:1px solid #ccc;padding:0 0 0.5em;margin:0 0 1em}
+.main_customer_center {margin:2em 0}
+.main_customer_center article {position:relative;margin:0 0 2em}
+.main_customer_center article h2 {border-bottom:1px solid #ccc;padding:0 0 0.5em;margin:0 0 1em}
 .main_customer_center article a.more {position:absolute;top:0;right:0;z-index:9999}
 
 
-.main_template_lastest {float:left;width:100%;position:relative}
-.main_template_lastest h2 {border-bottom:1px solid #ccc}
+.main_template_lastest {position:relative}
+.main_template_lastest h2 {border-bottom:1px solid #ccc;padding:0 0 0.5em;margin:0 0 1em}
 .main_template_lastest .more {position:absolute;top:0;right:0;}
 
 /* FAQ Category*/

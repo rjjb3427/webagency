@@ -1,5 +1,5 @@
-<section class="main_template_lastest">
-  <h2>디자인시안</h2>
+<section class="main_list main_template_lastest row">
+  <h2><%=t('activerecord.models.template') %></h2>
   <div class="template none">
 		<div class="template_img">
 			<input type="hidden" value="">
@@ -16,7 +16,7 @@
 	<div>
 		<% unless @template_lastests.empty? %>
 			<% @template_lastests.each_with_index do |template,index| %>
-				<article class="template<% if(index+1==5) %> nm<% end %>">
+				<article class="template">
 					<div class="template_img">
 						<input type="hidden" value="<%=template.main_screenshot %>" />
 						<%=link_to template_path(:id=>template,:product=>template.template_type.product_id),:target=>'_blank',:class=>'detail_link' do %>

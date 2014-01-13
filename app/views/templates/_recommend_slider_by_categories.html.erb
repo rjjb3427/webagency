@@ -1,6 +1,6 @@
 <section class="template_recommend_slider_by_categories">
   <div class="template_recommend_category_list">
-    <ul>
+    <ul class="nav nav-pills">>
       <% unless @template_categories.empty? %>
       <% @template_categories.each do |template_category| %>
       <li><%=link_to template_category.name,templates_path(:template_category_id=>template_category) %></li>

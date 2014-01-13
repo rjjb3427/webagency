@@ -1,15 +1,13 @@
-<section id="maintain">
-	<section>
-		<div>
-			<h2>상품목록</h2>
-		</div>
-		<% unless @maintain.empty? %>
-		<% @maintain.each do |maintain| %>
-		<article class="maintain">
-			<%=link_to maintain do %>
-			<figure>
-				<%=image_tag maintain.photo.medium_thumb %>
-			</figure>
+<section id="maintain_index">
+  <section>
+    <h2>상품목록</h2>
+    	<% unless @maintain.empty? %>
+    	<% @maintain.each do |maintain| %>
+    	<article class="maintain">
+    	  <%=link_to maintain do %>
+    	  <figure>
+    	    <%=image_tag maintain.photo.medium_thumb %>
+    	  </figure>
 			<% end %>
 			<h2><%=maintain.title %></h2>
 		</article>
@@ -19,7 +17,7 @@
 	<div id="sl_bottom_menu">
 		<% if user_signed_in? %>
 		<% if current_user.admin? %>
-		<%= link_to 'New Maintain', new_maintain_path %>
+		<%= link_to t(:link_new), new_maintain_path %>
 		<% end %>
 		<% end %>
 		<%= paginate @maintain %>
