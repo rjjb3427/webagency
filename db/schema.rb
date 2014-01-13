@@ -14,7 +14,8 @@
 ActiveRecord::Schema.define(version: 20130324093627) do
 
   create_table "faq_categories", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",                     null: false
+    t.boolean  "enable",     default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,9 +26,10 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "faqs", force: true do |t|
-    t.integer  "faq_category_id",             null: false
-    t.string   "title",                       null: false
-    t.integer  "count",           default: 0, null: false
+    t.integer  "faq_category_id",                null: false
+    t.string   "title",                          null: false
+    t.integer  "count",           default: 0,    null: false
+    t.boolean  "enable",          default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,10 +37,11 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   add_index "faqs", ["faq_category_id"], name: "index_faqs_on_faq_category_id"
 
   create_table "galleries", force: true do |t|
-    t.integer  "gallery_category_id", null: false
-    t.string   "title",               null: false
-    t.string   "photo",               null: false
-    t.text     "content",             null: false
+    t.integer  "gallery_category_id",                null: false
+    t.string   "title",                              null: false
+    t.string   "photo",                              null: false
+    t.text     "content",                            null: false
+    t.boolean  "enable",              default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,7 +49,8 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   add_index "galleries", ["gallery_category_id"], name: "index_galleries_on_gallery_category_id"
 
   create_table "gallery_categories", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",                     null: false
+    t.boolean  "enable",     default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,16 +75,28 @@ ActiveRecord::Schema.define(version: 20130324093627) do
 
   create_table "guest_books", force: true do |t|
     t.integer  "user_id"
-    t.string   "title",                     limit: 60,             null: false
+    t.string   "title",                     limit: 60,                null: false
     t.string   "name",                      limit: 60
     t.string   "encrypted_password",        limit: 40
     t.string   "salt"
-    t.integer  "guest_book_comments_count",            default: 0, null: false
+    t.integer  "guest_book_comments_count",            default: 0,    null: false
+    t.boolean  "enable",                               default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "guest_books", ["user_id"], name: "index_guest_books_on_user_id"
+
+  create_table "histories", force: true do |t|
+    t.integer  "user_id",               null: false
+    t.string   "year",       limit: 40, null: false
+    t.string   "title",      limit: 60, null: false
+    t.text     "content",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id"
 
   create_table "impressions", force: true do |t|
     t.string   "impressionable_type"
@@ -119,8 +135,7 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "notice_contents", force: true do |t|
-    t.boolean "html",    default: false, null: false
-    t.text    "content",                 null: false
+    t.text "content", null: false
   end
 
   create_table "notices", force: true do |t|
@@ -137,10 +152,11 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "portfolios", force: true do |t|
-    t.string   "title",       null: false
-    t.string   "url",         null: false
-    t.text     "description", null: false
-    t.string   "photo",       null: false
+    t.string   "title",                      null: false
+    t.string   "url",                        null: false
+    t.text     "description",                null: false
+    t.string   "photo",                      null: false
+    t.boolean  "enable",      default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -214,6 +230,37 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
+
+  create_table "resource_photos", force: true do |t|
+    t.integer  "resource_id",                           null: false
+    t.string   "photo",                                 null: false
+    t.string   "alt",         limit: 60,                null: false
+    t.boolean  "enable",                 default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resource_photos", ["resource_id"], name: "index_resource_photos_on_resource_id"
+
+  create_table "resources", force: true do |t|
+    t.integer  "ad_position_id",                              null: false
+    t.string   "title",          limit: 60,                   null: false
+    t.string   "description"
+    t.string   "controller",     limit: 60,                   null: false
+    t.string   "menu_action",    limit: 60, default: "index", null: false
+    t.boolean  "use_category",              default: false,   null: false
+    t.boolean  "menu_display",              default: true,    null: false
+    t.integer  "per",                       default: 10,      null: false
+    t.boolean  "desc",                      default: true,    null: false
+    t.boolean  "enable",                    default: true,    null: false
+    t.integer  "priority",                  default: 100,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resources", ["ad_position_id"], name: "index_resources_on_ad_position_id"
+  add_index "resources", ["controller"], name: "index_resources_on_controller", unique: true
+  add_index "resources", ["title"], name: "index_resources_on_title", unique: true
 
   create_table "template_authors", force: true do |t|
     t.string   "name",                                  null: false

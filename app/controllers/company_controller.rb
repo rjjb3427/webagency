@@ -7,6 +7,6 @@ class CompanyController < ApplicationController
   end
 
   def index
-  
+    @histories = History.order('id desc').page(params[:page]).per(15)
   end
 end
