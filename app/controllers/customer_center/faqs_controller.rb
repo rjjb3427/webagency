@@ -5,8 +5,7 @@ class CustomerCenter::FaqsController < BoardController
   
   def initialize(*params)
     super(*params)
-    @style="faqs"
-    @controller_name='FAQ'
+    @controller_name=t('activerecord.models.faq') 
   end
   
   # GET /faqs

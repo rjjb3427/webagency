@@ -40,14 +40,14 @@
       <div class="board_left"> 
       <%=yield %>
       </div>
-      <%= render :partial => 'layouts/ad' %>      
+      <%= render :partial => 'customer_center/aside' %>      
     </section>
   </section>
 </section>
 <%= render :partial => 'layouts/footer' %>
 <div class="slboard_overlay" id="overlay"></div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-<%= javascript_include_tag "//cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" %>
+<%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" %>
 <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" %>
 <%= javascript_include_tag @script, "data-turbolinks-track" => true %>
 </body>

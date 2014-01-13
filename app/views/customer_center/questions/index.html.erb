@@ -22,7 +22,7 @@
 			<tr>
 				<td><p class="sl_name" title="<%=userName(question) %>"><%=userName(question,10) %></p></td>
 				<td><p><%=checkPrivLink(question) %> &nbsp; <% if(question.secret?) %><%=image_tag('/assets/board/lock.png') %><% end %></p></td>
-				<td class="sl_right"><p class="sl_count"><% if question.question_answers_count? %>답변<% else %>미답변<% end %></p></td>
+				<td class="sl_right"><p class="sl_count"><% if question.question_comments_count? %>답변<% else %>미답변<% end %></p></td>
 				<td class="sl_right"><p class="sl_count"><%= question.impressionist_count(:filter=>:ip_address) %></p></td>
 				<td class="sl_right"><p class="sl_registered_date"><%=getFormatDate(question.created_at.to_s) %></p></td>
 			</tr>

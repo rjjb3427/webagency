@@ -1,12 +1,7 @@
-<section id="question_show" class="sub_main">
-	<%= render :partial => 'customer_center/top' %>
-	<div class="board_left">	
-	<% if notice %>
-	<div class="alert alert-success">
-		<button class="close" data-dismiss="alert" type="button">×</button>
-		<%= notice %>
-	</div>
-	<% end %>
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<section id="question_show">
 	<div class="slboard_content">
 		<div class="sl_content_header">
 			<h3><%= @question.title %></h3>
@@ -17,13 +12,13 @@
 		</div>
 	</div>
 	<div id="sl_answer_list_layer">
-		<%= render @question_answer %>	
+		<%= render @question_comments %>	
 	</div>
-	<% unless @question_answer.empty? %>
-	<div class="flickr_pagination"><%= paginate @question_answer %></div>
+	<% unless @question_comments.empty? %>
+	<div><%= paginate @question_answer %></div>
 	<% end %>
 	<div id="sl_comment_form_layer">
-		<%= render "customer_center/question_answers/form" %>
+		<%= render "customer_center/question_comments/form" %>
 	</div>
 	<div id="sl_content_bottom_menu">
 		<%= link_to t(:link_list), customer_center_questions_path %> 
@@ -43,6 +38,4 @@
 			<% end %>			
 		<% end %>
 	</div>
-	</div>
-	<%= render :partial => 'layouts/ad' %>	
 </section>

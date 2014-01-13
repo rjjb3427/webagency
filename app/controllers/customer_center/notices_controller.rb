@@ -4,11 +4,8 @@ class CustomerCenter::NoticesController < BoardController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:index,:show]
 
-  def initialize
-    super
-    @meta_description='예쁘고 귀여운 수정이의 공지사항입니다.'    
-    @style="board"
-    @script="board"    
+  def initialize(*params)
+    super(*params)
     @controller_name='공지사항'    
   end
   

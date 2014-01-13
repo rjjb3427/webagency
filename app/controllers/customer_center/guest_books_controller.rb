@@ -6,8 +6,6 @@ class CustomerCenter::GuestBooksController < AnonBoardController
   def initialize(*params)
     super(*params)   
     @controller_name=t('activerecord.models.guest_book')
-    @script="board/index"
-    @meta_description='예쁘고 귀여운 수정이의 방명록입니다.'
   end
   
   # GET /guest_books

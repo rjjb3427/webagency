@@ -26,8 +26,12 @@
 			<%=image_tag product.photo.medium_thumb %>
 		</figure>
 		<% end %>
+  <% if can? :update, Product %>		
 		<%=link_to t(:link_edit),edit_product_path(product) %>
+		<% end %>
+		<% if can? :delete, Product %>
 		<%=link_to t(:link_delete),product_path(product), method: :delete, data: { confirm: t(:delete_confirm)} %>	
+		<% end %>
 	</article>
 	<% end %>
 	<% else %>

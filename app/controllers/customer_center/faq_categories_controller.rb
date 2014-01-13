@@ -2,12 +2,6 @@
 
 class CustomerCenter::FaqCategoriesController < BoardController
   before_filter :authenticate_user!, :except => [:index,:show]
-  
-  def initialize(*params)
-    super(*params)
-    @style='faqs'
-    @controller_name='수정이 FAQ'
-  end
     
   # GET /faq_categories
   # GET /faq_categories.json

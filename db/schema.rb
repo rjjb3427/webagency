@@ -111,18 +111,9 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "maintains", force: true do |t|
-    t.string   "title",      limit: 60, null: false
-    t.string   "photo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "menus", force: true do |t|
     t.string   "title",      limit: 60,                null: false
-    t.string   "path",       limit: 60,                null: false
-    t.string   "photo",                                null: false
-    t.string   "alt",        limit: 60
-    t.boolean  "enable",                default: true
+    t.string   "photo"
+    t.boolean  "enable",                default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -183,14 +174,15 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   end
 
   create_table "projects", force: true do |t|
-    t.string   "title",       limit: 60, null: false
-    t.string   "description",            null: false
+    t.string   "title",       limit: 60,                null: false
+    t.string   "description",                           null: false
     t.string   "photo"
+    t.boolean  "enable",                 default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "question_answers", force: true do |t|
+  create_table "question_comments", force: true do |t|
     t.integer  "question_id",                   null: false
     t.integer  "user_id"
     t.string   "name"
@@ -201,8 +193,8 @@ ActiveRecord::Schema.define(version: 20130324093627) do
     t.datetime "updated_at"
   end
 
-  add_index "question_answers", ["question_id"], name: "index_question_answers_on_question_id"
-  add_index "question_answers", ["user_id"], name: "index_question_answers_on_user_id"
+  add_index "question_comments", ["question_id"], name: "index_question_comments_on_question_id"
+  add_index "question_comments", ["user_id"], name: "index_question_comments_on_user_id"
 
   create_table "question_contents", force: true do |t|
     t.text "content", null: false
@@ -210,12 +202,13 @@ ActiveRecord::Schema.define(version: 20130324093627) do
 
   create_table "questions", force: true do |t|
     t.integer  "user_id"
-    t.string   "title",                  limit: 60,             null: false
-    t.string   "name",                   limit: 60
-    t.string   "encrypted_password",     limit: 40
+    t.string   "title",                   limit: 60,                null: false
+    t.string   "name",                    limit: 60
+    t.string   "encrypted_password",      limit: 40
     t.string   "salt"
-    t.integer  "secret",                            default: 0, null: false
-    t.integer  "question_answers_count",            default: 0, null: false
+    t.integer  "secret",                             default: 0,    null: false
+    t.integer  "question_comments_count",            default: 0,    null: false
+    t.boolean  "enable",                             default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -321,7 +314,7 @@ ActiveRecord::Schema.define(version: 20130324093627) do
     t.string   "keywords"
     t.string   "main_screenshot"
     t.string   "small_screenshot"
-    t.boolean  "enable",                         default: true
+    t.boolean  "enable",                         default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

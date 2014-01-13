@@ -11,12 +11,13 @@
 			<div class="sl_content_text"><%= simple_format(@notice.notice_content.content) %></div>
 		</div>
 	</div>
-	<div id="sl_content_bottom_menu">
-		<%= link_to t(:link_list),customer_center_notices_path %>
-		<% if user_signed_in? %>
-		<% if current_user.admin? %>
-		&nbsp; | &nbsp; <%= link_to t(:link_edit), edit_customer_center_notice_path(@notice) %> &nbsp; | &nbsp; <%= link_to t(:link_delete), customer_center_notice_path(@notice), method: :delete, data: { confirm: t(:delete_confirm) } %>
-		<% end %>
-		<% end %>
-	</div>
+  <div id="sl_content_bottom_menu">
+    <%= link_to t(:link_list),customer_center_notices_path %>
+    <% if can? :update, Notice %>
+    &nbsp; | &nbsp; <%= link_to t(:link_edit), edit_customer_center_notice_path(@notice),:rel=>"nofollow" %>
+    <% end %>
+    <% if can? :delete, Notice %>
+    &nbsp; | &nbsp; <%= link_to t(:link_delete), customer_center_notice_path(@notice), method: :delete, data: { confirm: t(:delete_confirm) },:rel=>"nofollow" %>
+    <% end %>
+  </div>
 </section>

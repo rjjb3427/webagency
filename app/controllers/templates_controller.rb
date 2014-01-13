@@ -14,7 +14,7 @@ class TemplatesController < ApplicationController
     @products=Product.find(:all,:conditions=>{:enable=>true})
     @template_categories=TemplateCategory.find(:all,:conditions=>{:enable=>true})
     @template_authors=TemplateAuthor.find(:all,:conditions=>{:enable=>true})
-    
+    @template_types=TemplateType.find(:all,:conditions=>{:enable=>true})    
     @templates=Template.joins(:template_author)
     
     if(params[:template_category_id])

@@ -42,13 +42,11 @@
 		<% else %>
 		<p class="nonData"><%=t(:no_data)%></p>	
 		<% end %>
-  <div id="sl_bottom_menu"> 
-    <% if user_signed_in? %>
-    <% if current_user.admin? %>
-    <%= link_to 'New Template', new_template_path %>
-    <% end %>
-    <% end %>
-    <%= paginate @templates %>
+  <div id="sl_bottom_menu">
+  <% if can? :create, Template %>
+    <%= link_to t(:link_new), new_template_path,:rel=>"nofollow" %>
+  <% end %>
+  <%= paginate @templates %>
   </div>
 </section>
 <%= render :partial => 'templates/aside' %>

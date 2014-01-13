@@ -22,7 +22,7 @@ Webagency::Application.routes.draw do
       resources :guest_book_comments
     end
     resources :questions do
-      resources :question_answers
+      resources :question_comments
     end 
     resources :contacts
     resources :notices
