@@ -10,9 +10,9 @@
     </ul>
   </div>
   <div class="scrollable">
-    <% unless @templateSliders.empty? %>
+    <% unless @template_sliders.empty? %>
     <ul class="items">
-      <% @templateSliders.each_slice(6) do |template5| %>	
+      <% @template_sliders.each_slice(6) do |template5| %>	
       <li>
         <% template5.each_with_index do |template,index| %>
 	<article class="template<% if(index==5) %> nm<% end %>">

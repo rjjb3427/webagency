@@ -52,7 +52,7 @@ class PortfoliosController < ApplicationController
 
     respond_to do |format|
       if @portfolio.save
-        format.html { redirect_to @portfolio, notice: @controller_name +t(:message_success_create) }
+        format.html { redirect_to @portfolio, notice: @controller_name +t(:message_success_create)}
         format.json { render json: @portfolio, status: :created, location: @portfolio }
       else
         format.html { render action: "new" }
@@ -66,7 +66,7 @@ class PortfoliosController < ApplicationController
   def update
     respond_to do |format|
       if @portfolio.update_attributes(portfolio_params)
-        format.html { redirect_to @portfolio, notice: @controller_name +t(:message_success_update) }
+        format.html { redirect_to @portfolio, notice: @controller_name +t(:message_success_update)}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

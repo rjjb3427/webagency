@@ -1,6 +1,6 @@
 <section class="main_customer_center">
 	<article>
-		<h3>견적문의 현황</h3>
+		<h2>견적문의 현황</h2>
 		<ul>
 			<% unless @questions.empty? %>
 			<% @questions.each do |question| %>
@@ -13,7 +13,7 @@
 		<%=link_to 'more',customer_center_questions_path,:class=>'more' %>				
 	</article>
 	<article>
-		<h3>공지사항</h3>		
+		<h2>공지사항</h2>	
 		<ul>
 			<% unless @notices.empty? %>
 			<% @notices.each do |notice| %>
@@ -26,7 +26,7 @@
 		<%=link_to 'more',customer_center_notices_path,:class=>'more' %>			
 	</article>
 	<article>
-		<h3>상담</h3>		
+		<h2>상담</h2>
 		<ul>
 			<% unless @guest_books.empty? %>
 			<% @guest_books.each do |guest_book| %>
@@ -37,9 +37,9 @@
 			<% end %>			
 		</ul>
 		<%=link_to 'more',customer_center_notices_path,:class=>'more' %>		
+	</article>
 	<article>
-	<article>
-		<h3>진행중인 프로젝트</h3>
+		<h2>진행중인 프로젝트</h2>
 		<ul>
 			<% unless @projects.empty? %>
 			<% @projects.each do |project| %>

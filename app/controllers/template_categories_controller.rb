@@ -1,11 +1,18 @@
 # encoding: utf-8
 
 class TemplateCategoriesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index,:show]   
+  before_action :set_template, only: [:show, :edit, :update, :destroy]
+  
+  def initialize(*params)
+    super(*params)   
+    @controller_name=t('activerecord.models.template_category')
+  end
   
   # GET /template_categories
   # GET /template_categories.json
   def index
-    @template_categories=TemplateCategory.find(:all,:conditions=>{:enable=>1})
+    @template_categories=TemplateCategory.find(:all,:conditions=>{:enable=>true})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,8 +23,6 @@ class TemplateCategoriesController < ApplicationController
   # GET /template_categories/1
   # GET /template_categories/1.json
   def show
-    @template_category_category = TemplateCategory.find(params[:id]) 
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @template_category }
@@ -37,13 +42,12 @@ class TemplateCategoriesController < ApplicationController
 
   # GET /template_categories/1/edit
   def edit
-    @template_category = TemplateCategory.find(params[:id])
   end
 
   # POST /template_categories
   # POST /template_categories.json
   def create
-    @template_category = TemplateCategory.new(params[:template])
+    @template_category = TemplateCategory.new(template_category_params)
 
     respond_to do |format|
       if @template_category.save
@@ -59,10 +63,8 @@ class TemplateCategoriesController < ApplicationController
   # PUT /template_categories/1
   # PUT /template_categories/1.json
   def update
-    @template_category = TemplateCategory.find(params[:id])
-
     respond_to do |format|
-      if @template_category.update_attributes(params[:template])
+      if @template_category.update_attributes(template_category_params)
         format.html { redirect_to @template_category, notice: 'Template was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,12 +77,22 @@ class TemplateCategoriesController < ApplicationController
   # DELETE /template_categories/1
   # DELETE /template_categories/1.json
   def destroy
-    @template_category = TemplateCategory.find(params[:id])
     @template_category.destroy
 
     respond_to do |format|
-      format.html { redirect_to templates_url }
+      format.html { redirect_to template_categories_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_template_category
+    @template_category = TemplateCategory.find(params[:id])
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def template_category_params
+    params.require(:template_category).permit(:id,:name)
   end
 end

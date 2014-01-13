@@ -1,19 +1,17 @@
 # encoding: utf-8
 
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, :except => [:index,:show]  
   before_action :set_product, only: [:show, :edit, :update, :destroy]  
   
-  def initialize
-    super
-    @style='products/index'
-    @script='products/index'
-    @controller_name='상품'
+  def initialize(*params)
+    super(*params)   
+    @controller_name=t('activerecord.models.product')
   end
   # GET /products
   # GET /products.json
   def index
-    @products = Product.order('id desc').page(params[:page]).per(10)
-    @templateSliders=Template.order('id desc').page(params[:page]).per(50)    
+    @products = Product.order('id desc').where(:enable=>true).page(params[:page]).per(10)    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,7 +51,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: @controller_name +t(:message_success_create)}
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }
@@ -67,7 +65,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update_attributes(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: @controller_name +t(:message_success_update)}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

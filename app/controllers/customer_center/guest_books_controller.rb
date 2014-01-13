@@ -85,7 +85,7 @@ class CustomerCenter::GuestBooksController < AnonBoardController
   def update
     respond_to do |format|
       if @guest_book.update_attributes(guest_book_params)
-        format.html { redirect_to @guest_book, :notice=> @controller_name +t(:message_success_update)}
+        format.html { redirect_to customer_center_guest_book_url(@guest_book), :notice=> @controller_name +t(:message_success_update)}
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

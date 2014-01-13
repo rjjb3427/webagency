@@ -3,8 +3,6 @@
 //=require plugin/jquery.cycle.all.min
 //=require plugin/jquery.prettyPhoto
 //=require mediaplayer-5.7-viral/jwplayer
-//=require sliders/image_slider
-//=require products/tab_slider
 
 $(document).ready(function() {
 	$(".template_slider .scrollable").scrollable({circular: true }).autoscroll({interval: 3500});

@@ -27,8 +27,6 @@ class CustomerCenter::QuestionsController < AnonBoardController
     @question_comments=@question.question_comment.order('id desc').page(params[:page]).per(10)
     @question_comment=QuestionComment.new
     
-    @script="board/show"    
-    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @question }
@@ -40,7 +38,6 @@ class CustomerCenter::QuestionsController < AnonBoardController
   def new
     @question = Question.new
     @question.build_question_content
-    @script="board/new"
     
     respond_to do |format|
       format.html # new.html.erb

@@ -9,7 +9,9 @@ Webagency::Application.routes.draw do
   resources :products
   resources :templates
   resources :template_categories
+  resources :template_types  
   resources :template_authors
+  resources :template_packages  
   resources :projects
   resources :portfolios
   resources :maintain
@@ -33,10 +35,6 @@ Webagency::Application.routes.draw do
     resources :intro, :menus, :notices, :gallery_categories, :galleries, :faq_categories,:faqs, :guest_books
     resources :questions do
       resources :question_answers
-    end
-    
-    resources :recipes do
-      resources :recipe_comments
     end
   end  
   

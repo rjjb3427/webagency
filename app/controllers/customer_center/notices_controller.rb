@@ -5,8 +5,8 @@ class CustomerCenter::NoticesController < BoardController
   before_action :authenticate_user!, :except => [:index,:show]
 
   def initialize(*params)
-    super(*params)
-    @controller_name='공지사항'    
+    super(*params)   
+    @controller_name=t('activerecord.models.notice')
   end
   
   # GET /notices
@@ -53,7 +53,7 @@ class CustomerCenter::NoticesController < BoardController
 
     respond_to do |format|
       if @notice.save
-        format.html { redirect_to ['customer_center',@notice], notice: '공지사항이 작성되었습니다.' }
+        format.html { redirect_to customer_center_notice_url(@notice), :notice=> @controller_name +t(:message_success_update)}
         format.json { render json: @notice, status: :created, location: @notice }
       else
         format.html { render action: "new" }
@@ -67,7 +67,7 @@ class CustomerCenter::NoticesController < BoardController
   def update
     respond_to do |format|
       if @notice.update_attributes(notice_params)
-        format.html { redirect_to ['customer_center',@notice], notice: '공지사항이 수정되었습니다.' }
+        format.html { redirect_to customer_center_notice_url(@notice), :notice=> @controller_name +t(:message_success_create)}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -96,5 +96,5 @@ class CustomerCenter::NoticesController < BoardController
   # Never trust parameters from the scary internet, only allow the white list through.
   def notice_params
     params.require(:notice).permit(:id,:title,notice_content_attributes: [:id,:content])
-  end  
+  end
 end

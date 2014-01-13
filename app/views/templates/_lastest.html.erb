@@ -1,11 +1,6 @@
 <section class="main_template_lastest">
-	<div class="top">
-		<h2>디자인시안</h2>
-		<%=link_to 'more',templates_path,{:title=>'템플릿 더보기',:class=>'more'} %>
-		<a class="next"><span>다음</span></a>
-		<a class="prev"><span>이전</span></a>		
-	</div>
-	<div class="template none">
+  <h2>디자인시안</h2>
+  <div class="template none">
 		<div class="template_img">
 			<input type="hidden" value="">
 			<a href=""  target="_blank">
@@ -18,12 +13,9 @@
 		</div>
 		<p class="package_name"></p>
 	</div>
-	<div class="scrollable">
-		<% unless @templateSliders.empty? %>
-		<ul class="items">
-			<% @templateSliders.each_slice(5) do |template5| %>	
-			<li>
-			<% template5.each_with_index do |template,index| %>
+	<div>
+		<% unless @template_lastests.empty? %>
+			<% @template_lastests.each_with_index do |template,index| %>
 				<article class="template<% if(index+1==5) %> nm<% end %>">
 					<div class="template_img">
 						<input type="hidden" value="<%=template.main_screenshot %>" />
@@ -43,11 +35,9 @@
 					</dl>
 				</article>
 			<% end %>
-			</li>
-		<% end %>
-		</ul>
 		<% else %>
 		<p></p>
 		<% end %>
 	</div>
+	<%=link_to 'more',templates_path,{:title=>'템플릿 더보기',:class=>'more'} %>
 </section>

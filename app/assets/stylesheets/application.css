@@ -99,7 +99,6 @@ footer div {margin:0.3em 0 0}
 
 header {
   position: relative;
-  z-index: 9996;
   float: left;
   width: 100%;
   margin: 0;
@@ -214,6 +213,9 @@ header #top_menu li {float:left;margin:0 15px 0 0;padding:0}
 .main_customer_center article a.more {position:absolute;top:0;right:0;z-index:9999}
 
 
+.main_template_lastest {float:left;width:100%;position:relative}
+.main_template_lastest h2 {border-bottom:1px solid #ccc}
+.main_template_lastest .more {position:absolute;top:0;right:0;}
 
 /* FAQ Category*/
 #faqCategoryList {float:left;width:100%;margin:10px 0 0 0;padding:0;background:#666;list-style:none}

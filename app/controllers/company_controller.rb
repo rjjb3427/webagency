@@ -1,11 +1,9 @@
 # encoding: utf-8
 
 class CompanyController < ApplicationController
-  def initialize
-    super
-    @style='company'
-    @script='index'
-    @controller_name='회사소개'
+  def initialize(*params)
+    super(*params)   
+    @controller_name=t('activerecord.models.company')
   end
 
   def index
