@@ -34,6 +34,7 @@ class CustomerCenter::NoticesController < BoardController
   def new
     @notice = Notice.new
     @notice.build_notice_content
+    @script='board/new'    
     
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +44,7 @@ class CustomerCenter::NoticesController < BoardController
 
   # GET /notices/1/edit
   def edit
+    @script='board/edit'    
   end
 
   # POST /notices

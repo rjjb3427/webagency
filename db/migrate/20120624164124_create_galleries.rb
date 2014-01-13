@@ -6,7 +6,8 @@ class CreateGalleries < ActiveRecord::Migration
       t.references :gallery_category,:null=>false      
       t.string :title,:null=>false
       t.string :photo,:null=>false
-      t.text :content,:null=>false      
+      t.text :content,:null=>false
+      t.boolean :enable, :null=>false, :default=>true      
       t.timestamps
     end
     

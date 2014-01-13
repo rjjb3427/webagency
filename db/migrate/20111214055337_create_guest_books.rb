@@ -9,6 +9,7 @@ class CreateGuestBooks < ActiveRecord::Migration
       t.string :encrypted_password,:limit=>40
       t.string :salt
       t.integer :guest_book_comments_count,:default=>0,:null=>false
+      t.boolean :enable, :null=>false, :default=>true      
       t.timestamps
     end
     

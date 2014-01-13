@@ -33,7 +33,8 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/new.json
   def new
     @portfolio = Portfolio.new
-    @portfolio.build_portfolio_content    
+    @portfolio.build_portfolio_content
+    @script='board/new'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +44,7 @@ class PortfoliosController < ApplicationController
 
   # GET /portfolios/1/edit
   def edit
+    @script='board/edit'
   end
 
   # POST /portfolios
@@ -94,6 +96,6 @@ class PortfoliosController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def portfolio_params
-    params.require(:portfolio).permit(:id, :url, :title, :description, :photo)
+    params.require(:portfolio).permit(:id, :url, :title, :description, :photo, portfolio_content_attributes: [:id,:content])
   end  
 end

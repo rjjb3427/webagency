@@ -9,7 +9,6 @@ class CreateNotices < ActiveRecord::Migration
     end
     
     create_table :notice_contents do |t|
-      t.boolean :html,:default=>0,:null=>false
       t.text :content,:null=>false
     end
     

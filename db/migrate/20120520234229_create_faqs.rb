@@ -6,6 +6,7 @@ class CreateFaqs < ActiveRecord::Migration
       t.references :faq_category,:null=>false      
       t.string :title,:null=>false
       t.integer :count,:default=>0,:null=>false
+      t.boolean :enable, :null=>false, :default=>true      
       t.timestamps
     end
     
