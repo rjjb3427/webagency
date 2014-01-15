@@ -122,16 +122,16 @@ ActiveRecord::Schema.define(version: 20130324093627) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
 
-  create_table "maintain_contents", force: true do |t|
-    t.text "content", null: false
-  end
-
-  create_table "maintains", force: true do |t|
+  create_table "maintain", force: true do |t|
     t.string   "title",      limit: 60,                null: false
     t.string   "photo"
     t.boolean  "enable",                default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "maintain_contents", force: true do |t|
+    t.text "content", null: false
   end
 
   create_table "notice_contents", force: true do |t|

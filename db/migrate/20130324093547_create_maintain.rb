@@ -1,7 +1,7 @@
 
-class CreateMaintains < ActiveRecord::Migration
+class CreateMaintain < ActiveRecord::Migration
   def change
-    create_table :maintains do |t|
+    create_table :maintain do |t|
       t.string :title, :null=>false, :limit=>60
       t.string :photo
       t.boolean :enable, :null=>false, :default=>true      
