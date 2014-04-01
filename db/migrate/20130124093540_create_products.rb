@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
-      t.string :title, :null=>false, :default=>0
+      t.string :title, :null=>false, :limit=>60
       t.integer :price, :null=>false, :default=>0
       t.integer :price_discount, :null=>false, :default=>0
       t.integer :page, :null=>false, :default=>0

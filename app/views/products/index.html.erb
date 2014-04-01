@@ -3,9 +3,12 @@
   <% @products.each do |product| %>
 	<article class="product col-6 col-sm-6 col-lg-4">
 		<div class="article_top">
-			<h2><%=product.title %></h2>
-			<p><span class="arial"><%=product.price %></span>만원</p>
-		</div>		
+			<h2><%=link_to product.title,product %></h2>
+			<% if product.photo %>
+			<%=image_tag product.photo.large_thumb,:class=>'img-responsive',:itemprop=>"contentURL" %>
+			<% end %>
+			<p><span class="arial"><%=product.price %></span>만원</p>		
+		</div>
 		<dl class="dl-horizontal">		
 			<dt>페이지수</dt>
 			<dd>총<strong class="arial"><%=product.page %></strong>페이지이내</dd>

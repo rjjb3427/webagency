@@ -6,5 +6,5 @@ class Product < ActiveRecord::Base
   has_many :template_type
   has_one :product_content, :foreign_key => :id, :dependent => :destroy
   accepts_nested_attributes_for :product_content, :allow_destroy => true
-  mount_uploader :photo, ProductUploader  
+  mount_uploader :photo, ProductUploader
 end

@@ -36,6 +36,13 @@ gem 'ckeditor', :path=>"vendor/gems/ckeditor"
 gem 'fancybox2-rails', :path=>"vendor/gems/fancybox2-rails"
 #gem 'sprockets-webp'
 #gem 'carrierwave-webp'
+#gem 'jquery-ui-rails'
+#gem 'ui_datepicker-rails3'
+#gem 'fullcalendar-rails'
+gem 'globalize', '~> 4.0.0'
+gem 'rack-cache'
+gem 'dalli'
+gem 'kgio'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -52,6 +59,7 @@ end
 group :production do
   gem 'mysql2'
   gem 'recaptcha'
+  gem 'asset_sync'
   gem 'thin'
   gem 'connect'
 end
