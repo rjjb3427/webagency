@@ -1,4 +1,4 @@
-set :application, 'yankee'
+set :application, 'webagency'
 set :repo_url, 'git@github.com:sleeping-lion/webagency.git'
 set :branch, 'master'
 set :deploy_to, '/home/deploy/webagency'
